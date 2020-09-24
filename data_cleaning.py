@@ -13,20 +13,7 @@ import math
 
 df = pd.read_csv('Data/summer-products-with-rating-and-performance_2020-08.csv')
 
-#Remove redundant/unneeded variables
-del df['shipping_option_name']
-del df['title']
-del df['currency_buyer']
-del df['urgency_text']
-del df['merchant_name']
-del df['merchant_profile_picture']
-del df['merchant_id']
-del df['merchant_info_subtitle']
-del df['product_url']
-del df['product_picture']
-del df['product_id']
-del df['theme']
-del df['crawl_month']
+
 
 #Add column for number of total listings from the same merchant
 df['num_listings'] = df['merchant_title'].apply(lambda x: df['merchant_title'].value_counts()[str(x)])
@@ -52,6 +39,49 @@ df['product_variation_size_id'] = df['product_variation_size_id'].apply(lambda x
 
 #Change nan origin countries to 'no_origin_country'
 df['origin_country'] = df['origin_country'].apply(lambda x: 'no_origin_country' if not isinstance(x, str) else x)
+
+
+# Use imagga api to analyze whether or not image has person
+response_list = []
+import requests
+def contains_person(img_url):
+    
+    url = "https://api.imagga.com/v2/categories/personal_photos"
+    
+    querystring = {"image_url":img_url}
+    
+    headers = {
+        'accept': "application/json",
+        'authorization': "Basic YWNjXzM1OWU3OTdkZjcxYmM2NDo5OGRiZjFiMjVhMjk5ZjBhNWJhMDBlMzc1NGM5MzFjMA=="
+        }
+    
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    txt = response.text
+    response_list.append(txt)
+    if('people' in txt):
+        return True
+    else:
+        return False
+
+df['image_contains_person'] = df['product_picture'].apply(lambda x: contains_person(x))
+
+#Remove redundant/unneeded variables
+del df['shipping_option_name']
+del df['title']
+del df['currency_buyer']
+del df['urgency_text']
+del df['merchant_name']
+del df['merchant_profile_picture']
+del df['merchant_id']
+del df['merchant_info_subtitle']
+del df['product_url']
+del df['product_picture']
+del df['product_id']
+del df['theme']
+del df['crawl_month']
+
+#Output cleaned data to new csv
+df_out = df
 
 #Output cleaned data to new csv
 df_out.to_csv('wish_sales_data_cleaned.csv',index = False)
