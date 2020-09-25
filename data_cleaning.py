@@ -86,6 +86,6 @@ del df['crawl_month']
 df_out = df
 
 #Output cleaned data to new csv
-df_out.to_csv('wish_sales_data_cleaned.csv',index = False)
+df_out.to_csv('Data/wish_sales_data_cleaned.csv',index = False)
 
 
