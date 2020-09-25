@@ -49,19 +49,21 @@ def contains_person(img_url):
     url = "https://api.imagga.com/v2/categories/personal_photos"
     
     querystring = {"image_url":img_url}
+    #Authorization key given by Imagga
+    auth_key = "" 
     
     headers = {
         'accept': "application/json",
-        'authorization': "Basic YWNjXzM1OWU3OTdkZjcxYmM2NDo5OGRiZjFiMjVhMjk5ZjBhNWJhMDBlMzc1NGM5MzFjMA=="
+        'authorization': auth_key
         }
     
     response = requests.request("GET", url, headers=headers, params=querystring)
     txt = response.text
     response_list.append(txt)
     if('people' in txt):
-        return True
+        return 1
     else:
-        return False
+        return 0
 
 df['image_contains_person'] = df['product_picture'].apply(lambda x: contains_person(x))
 
