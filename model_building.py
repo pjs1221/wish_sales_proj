@@ -189,7 +189,7 @@ param_grid = {
     'n_estimators': [100, 200, 300, 1000]
 }
 
-grid_search = GridSearchCV(estimator = rf, param_grid = param_grid, cv = 3, n_jobs = -1, verbose = 2)
+grid_search = GridSearchCV(estimator = rf, param_grid = param_grid, cv = 10, n_jobs = -1, verbose = 2)
 
 start_time = timer(None)
 grid_search.fit(X_train,y_train)
@@ -198,7 +198,7 @@ timer(start_time)
 grid_search.best_params_
 best_grid = grid_search.best_estimator_
 
-# test ensembels
+# test ensembles
 
 from sklearn import metrics
 tpred_dtree = dtree.predict(X_test)
@@ -208,3 +208,6 @@ tpred_xgb = xgb.predict(X_test)
 dtree_accuracy = metrics.accuracy_score(y_test,tpred_dtree)
 rf_accuracy = metrics.accuracy_score(y_test,tpred_rf)
 xgb_accuracy = metrics.accuracy_score(y_test,tpred_xgb)
+
+print('Dtree Accuracy',)
+print('Dtree Accuracy',)
