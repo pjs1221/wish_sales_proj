@@ -26,7 +26,11 @@ After acquiring the data, I needed to clean it so that it was usable for the mod
 
 ## Exploratory Data Analysis
 
+![Correlation](EDA_Images/correlation.png)
 
+![Color Bar Graph](EDA_Images/color_bar_graph.png)
+
+![Size Bar Graph](EDA_Images/size_bar_graph.png)
 
 ## Model Building
 
