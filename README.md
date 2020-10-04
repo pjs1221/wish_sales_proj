@@ -26,11 +26,19 @@ After acquiring the data, I needed to clean it so that it was usable for the mod
 
 ## Exploratory Data Analysis
 
-![Correlation](EDA_Images/correlation.png)
+<p float="left">
+  <img src="EDA_Images/correlation.png" width="400" />
+</p>
 
-![Color Bar Graph](EDA_Images/color_bar_graph.png)
+<p float="left">
+  <img src="EDA_Images/color_bar_graph.png" width="400" />
+  <img src="EDA_Images/size_bar_graph.png" width="400" /> 
+</p>
 
-![Size Bar Graph](EDA_Images/size_bar_graph.png)
+<p float="left">
+  <img src="EDA_Images/num_listings_boxplot.png" width="400" />
+  <img src="EDA_Images/price_boxplot.png" width="400" /> 
+</p>
 
 ## Model Building
 
@@ -50,7 +58,7 @@ Five machine learning algorithms were considered for this data including:
 
 ### Initial Model Accuracy
 
-I tested various models 
+Using default hyperparameters, I tested the various models considered.
 
 * K Nearest Neighbor: Train Accuracy = 46%
 * SVM with Linear Kernel: Train Accuracy = 40.86%
